@@ -1,0 +1,304 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.1.0">
+  <diagram name="Страница — 1" id="XuXL9h3BN3YjODne8D47">
+    <mxGraphModel dx="2261" dy="1907" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="nybNs8-rKtBfPENBBMcP-1" value="Пользователь" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="470" y="370" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-2" value="Заказчик" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="470" y="555" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-3" value="Менеджер" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="350" y="230" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-4" value="Сотрудник службы&lt;div&gt;поддержки&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="590" y="350" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-5" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="410" as="sourcePoint" />
+            <mxPoint x="470" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-6" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="nybNs8-rKtBfPENBBMcP-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="590" y="370" as="sourcePoint" />
+            <mxPoint x="440" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-7" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-3" target="nybNs8-rKtBfPENBBMcP-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="410" as="sourcePoint" />
+            <mxPoint x="440" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-8" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.258;entryY=0.988;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-1" target="nybNs8-rKtBfPENBBMcP-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="410" as="sourcePoint" />
+            <mxPoint x="485" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-9" value="Управление аккаунтом" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="545" y="200" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-11" value="Регистрация в системе" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="70" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-12" value="Аутентификация в системе" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="100" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-13" value="Авторизация с определенной ролью" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="200" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-14" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=0.375;entryY=0.025;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-11" target="nybNs8-rKtBfPENBBMcP-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="414" y="149" as="sourcePoint" />
+            <mxPoint x="334" y="149" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-15" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=0.675;entryY=0.025;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-12" target="nybNs8-rKtBfPENBBMcP-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="110" as="sourcePoint" />
+            <mxPoint x="575.04" y="149" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-16" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=0.983;entryY=0.425;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-13" target="nybNs8-rKtBfPENBBMcP-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="348" y="115" as="sourcePoint" />
+            <mxPoint x="670" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-17" value="Бронировать&lt;div&gt;аренду&amp;nbsp;&lt;/div&gt;&lt;div&gt;контейнеров&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="505" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-18" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-17" target="nybNs8-rKtBfPENBBMcP-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="410" as="sourcePoint" />
+            <mxPoint x="440" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-19" value="Выбрать тип&lt;div&gt;контейнеров&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="315" y="640" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-20" value="Выбрать кол-во мест&lt;div&gt;в контейнере/целый контейнер&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="165" y="640" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-21" value="Указать параметры груза" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="535" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-22" value="Указать предпочтительность&lt;div&gt;маршрута&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="420" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-23" value="&amp;nbsp;Запросить скидку&lt;div&gt;&amp;nbsp;(с выбором типа скидки)&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="380" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-24" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=0.575;entryY=0.975;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-19" target="nybNs8-rKtBfPENBBMcP-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="348" y="115" as="sourcePoint" />
+            <mxPoint x="441" y="178" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-25" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=0.35;entryY=0.975;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.671;exitY=0.038;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-20" target="nybNs8-rKtBfPENBBMcP-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="357" y="652" as="sourcePoint" />
+            <mxPoint x="329" y="593" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-26" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=1;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-17" target="nybNs8-rKtBfPENBBMcP-21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="10" y="675" as="sourcePoint" />
+            <mxPoint x="43" y="615" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-27" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=0.9;entryY=0.775;entryDx=0;entryDy=0;exitX=0.05;exitY=0.263;exitDx=0;exitDy=0;entryPerimeter=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-17" target="nybNs8-rKtBfPENBBMcP-22">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="555" as="sourcePoint" />
+            <mxPoint x="179" y="567" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-28" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-17" target="nybNs8-rKtBfPENBBMcP-23">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="266" y="536" as="sourcePoint" />
+            <mxPoint x="196" y="497" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-29" value="Управлять&amp;nbsp;&lt;div&gt;заказом&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="570" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-30" value="" style="endArrow=none;html=1;rounded=0;entryX=0.042;entryY=0.288;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-2" target="nybNs8-rKtBfPENBBMcP-29">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="580" as="sourcePoint" />
+            <mxPoint x="480" y="585" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-31" value="Отслеживать&lt;div&gt;текущий статус&lt;/div&gt;&lt;div&gt;заказа&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="700" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-32" value="Изменять содержимое заказа&amp;nbsp;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="615" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-33" value="Получать&lt;div&gt;уведомления о&amp;nbsp;&lt;/div&gt;&lt;div&gt;изменениях в статусе заказа&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="510" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-34" value="Отменять&amp;nbsp;&lt;div&gt;заказ&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="690" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-35" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=0.275;entryY=0.925;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-31" target="nybNs8-rKtBfPENBBMcP-29">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="592" y="111" as="sourcePoint" />
+            <mxPoint x="530" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-36" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=0.65;entryY=0.95;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-34" target="nybNs8-rKtBfPENBBMcP-29">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="589" y="711" as="sourcePoint" />
+            <mxPoint x="603" y="654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-37" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-32" target="nybNs8-rKtBfPENBBMcP-29">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="678" y="712" as="sourcePoint" />
+            <mxPoint x="648" y="656" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-38" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.942;entryY=0.2;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-33" target="nybNs8-rKtBfPENBBMcP-29">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="320" y="515" as="sourcePoint" />
+            <mxPoint x="351" y="468" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-39" value="Управление судном&lt;div&gt;и контейнерами&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="230" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-40" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-39" target="nybNs8-rKtBfPENBBMcP-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="555" as="sourcePoint" />
+            <mxPoint x="480" y="585" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-41" value="Контроль загрузки&amp;nbsp;&lt;div&gt;судов и распределения&lt;div&gt;контейнеров&lt;/div&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-50" y="160" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-42" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0.771;exitY=0.938;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-41" target="nybNs8-rKtBfPENBBMcP-39">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="269" y="653" as="sourcePoint" />
+            <mxPoint x="302" y="593" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-43" value="Вести учет загрузки&lt;div&gt;и распределения&lt;/div&gt;&lt;div&gt;грузов&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-30" y="310" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-44" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0.9;exitY=0.225;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-43">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="128" y="225" as="sourcePoint" />
+            <mxPoint x="150" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-45" value="Планировать&amp;nbsp;&lt;div&gt;загрузку контейнеров&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="90" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-46" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0.586;exitY=1.025;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-45" target="nybNs8-rKtBfPENBBMcP-39">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="128" y="225" as="sourcePoint" />
+            <mxPoint x="175" y="254" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-50" value="Поддержка&lt;div&gt;клиентов&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="310" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-51" value="" style="endArrow=none;html=1;rounded=0;exitX=0.05;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-50" target="nybNs8-rKtBfPENBBMcP-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="555" as="sourcePoint" />
+            <mxPoint x="480" y="585" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-52" value="Связь с клиентами&amp;nbsp;&lt;div&gt;и разрешение&lt;/div&gt;&lt;div&gt;спорных&lt;/div&gt;&lt;div&gt;ситуаций&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="290" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-53" value="Поддержка&amp;nbsp;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;решения&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;проблем&lt;/span&gt;&lt;div&gt;&lt;div&gt;с доставкой&lt;/div&gt;&lt;div&gt;и изменения заказа&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="400" width="140" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-54" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=0.95;entryY=0.275;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.086;exitY=0.225;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-52" target="nybNs8-rKtBfPENBBMcP-50">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="247" as="sourcePoint" />
+            <mxPoint x="673" y="244" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-56" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=1.008;entryY=0.65;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-53" target="nybNs8-rKtBfPENBBMcP-50">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="882" y="318" as="sourcePoint" />
+            <mxPoint x="804" y="342" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-57" value="Ведение системных&lt;div&gt;операций&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="60" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-58" value="Системный&lt;div&gt;модуль&lt;/div&gt;&lt;div&gt;администр.&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="435" y="160" width="35" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-59" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-58" target="nybNs8-rKtBfPENBBMcP-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="289" as="sourcePoint" />
+            <mxPoint x="480" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-60" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="nybNs8-rKtBfPENBBMcP-58">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="437" y="136" as="sourcePoint" />
+            <mxPoint x="440" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-61" value="Обработка отчетности" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="195" y="-10" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-62" value="Учет и применение скидок" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="-80" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-64" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.588;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-61" target="nybNs8-rKtBfPENBBMcP-57">
+          <mxGeometry x="0.0098" relative="1" as="geometry">
+            <mxPoint x="589" y="160" as="sourcePoint" />
+            <mxPoint x="600" y="212" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-65" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0.425;exitY=0.988;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-62" target="nybNs8-rKtBfPENBBMcP-57">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="589" y="160" as="sourcePoint" />
+            <mxPoint x="600" y="212" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-66" value="Генерация&lt;div&gt;отчетов о перевозках,&amp;nbsp;&lt;/div&gt;&lt;div&gt;доходах, загрузке&lt;/div&gt;&lt;div&gt;контейнеров&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="25" y="-90" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-67" value="Предоставление&lt;div&gt;информации о&amp;nbsp;&lt;/div&gt;&lt;div&gt;заддержках и разных&lt;/div&gt;&lt;div&gt;инцидентах&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="175" y="-150" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-69" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0.729;exitY=0.975;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-66" target="nybNs8-rKtBfPENBBMcP-61">
+          <mxGeometry x="0.0098" relative="1" as="geometry">
+            <mxPoint x="325" y="47" as="sourcePoint" />
+            <mxPoint x="398" y="62" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-70" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.764;exitY=0.93;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-67" target="nybNs8-rKtBfPENBBMcP-61">
+          <mxGeometry x="0.0098" relative="1" as="geometry">
+            <mxPoint x="325" y="47" as="sourcePoint" />
+            <mxPoint x="398" y="62" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-73" value="Прогнозировать&lt;div&gt;новые заказы&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="-40" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="nybNs8-rKtBfPENBBMcP-74" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.792;entryY=0.063;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nybNs8-rKtBfPENBBMcP-73" target="nybNs8-rKtBfPENBBMcP-57">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="415" y="9" as="sourcePoint" />
+            <mxPoint x="418" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
