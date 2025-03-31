@@ -7,7 +7,7 @@
         <id>1</id>
         <email>parahinkv@gmail.com</email>
         <role>admin</role>
-        <full_name>Kirill Parakhin</full_name>
+        <full_name>Kirill</full_name>
     </ns:user>
     
     <ns:request>
@@ -32,7 +32,7 @@
         <city_id>1</city_id>
         <start_coord>40.7128, -74.0060</start_coord>
         <end_coord>40.7138, -74.0050</end_coord>
-        <length>500.5</length>
+        <length>400.5</length>
         <quality_factor>0.8</quality_factor>
         <user_intensity>0.9</user_intensity>
     </ns:roadSegment>

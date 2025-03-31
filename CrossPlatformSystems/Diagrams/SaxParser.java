@@ -3,7 +3,7 @@ import org.xml.sax.helpers.*;
 import javax.xml.parsers.*;
 import java.io.*;
 
-public class SAXParserExample {
+public class SaxParser {
     public static void main(String[] args) {
         try {
             File inputFile = new File("kirill_example.xml");
@@ -103,6 +103,7 @@ class RoadSegment {
 
 class RoadSegmentHandler extends DefaultHandler {
     private StringBuilder htmlContent;
+    private StringBuilder currentText;
     private double totalLength;
     private String currentElement;
     private RoadSegment currentSegment;
@@ -111,15 +112,16 @@ class RoadSegmentHandler extends DefaultHandler {
 
     public RoadSegmentHandler() {
         htmlContent = new StringBuilder();
+        currentText = new StringBuilder();
         totalLength = 0;
     }
 
     @Override
     public void startDocument() {
         htmlContent.append("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n")
-                   .append("<meta charset=\"UTF-8\">\n")
-                   .append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n")
-                   .append("<title>XML Data</title>\n</head>\n<body>\n<h1>Road Segments Data</h1>\n");
+                  .append("<meta charset=\"UTF-8\">\n")
+                  .append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n")
+                  .append("<title>XML Data</title>\n</head>\n<body>\n<h1>Road Segments Data</h1>\n");
     }
 
     @Override
@@ -130,6 +132,7 @@ class RoadSegmentHandler extends DefaultHandler {
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) {
         currentElement = qName;
+        currentText.setLength(0);
         if ("ns:roadSegment".equals(currentElement)) {
             currentSegment = new RoadSegment();
         } else if ("ns:user".equals(currentElement)) {
@@ -141,96 +144,110 @@ class RoadSegmentHandler extends DefaultHandler {
 
     @Override
     public void characters(char[] ch, int start, int length) {
-        String content = new String(ch, start, length).trim();
-        if ("email".equals(currentElement)) {
-            currentUser.setEmail(content);
-        } else if ("full_name".equals(currentElement)) {
-            currentUser.setFullName(content);
-        } else if ("role".equals(currentElement)) {
-            currentUser.setRole(content);
-        } else if ("id".equals(currentElement)) {
-            if (currentSegment != null) {
-                currentSegment.setId(content);
-            } else if (currentRequest != null) {
-                currentRequest.setId(content);
-            } else if (currentUser != null) {
-                currentUser.setId(content);
-            }
-        } else if ("start_coord".equals(currentElement)) {
-            if (currentSegment != null) {
-                currentSegment.setStartCoord(content);
-            }
-        } else if ("end_coord".equals(currentElement)) {
-            if (currentSegment != null) {
-                currentSegment.setEndCoord(content);
-            }
-        } else if ("length".equals(currentElement)) {
-            if (currentSegment != null) {
-                currentSegment.setLength(Double.parseDouble(content));
-            }
-        } else if ("quality_factor".equals(currentElement)) {
-            if (currentSegment != null) {
-                currentSegment.setQualityFactor(Double.parseDouble(content));
-            }
-        } else if ("user_intensity".equals(currentElement)) {
-            if (currentSegment != null) {
-                currentSegment.setUserIntensity(Double.parseDouble(content));
-            }
-        } else if ("start_point".equals(currentElement)) {
-            if (currentRequest != null) {
-                currentRequest.setStartPoint(content);
-            }
-        } else if ("end_point".equals(currentElement)) {
-            if (currentRequest != null) {
-                currentRequest.setEndPoint(content);
-            }
-        } else if ("datetime".equals(currentElement)) {
-            if (currentRequest != null) {
-                currentRequest.setDatetime(content);
-            }
-        } else if ("preference_parameter".equals(currentElement)) {
-            if (currentRequest != null) {
-                currentRequest.setPreferenceParameter(content);
-            }
-        } else if ("status".equals(currentElement)) {
-            if (currentRequest != null) {
-                currentRequest.setStatus(content);
-            }
-        }
+        currentText.append(ch, start, length);
     }
 
     @Override
     public void endElement(String uri, String localName, String qName) {
+        String content = currentText.toString().trim();
+        if (content.isEmpty()) return;
+
+        switch (qName) {
+            case "id":
+                if (currentSegment != null) currentSegment.setId(content);
+                else if (currentUser != null) currentUser.setId(content);
+                else if (currentRequest != null) currentRequest.setId(content);
+                break;
+            case "email":
+                currentUser.setEmail(content);
+                break;
+            case "full_name":
+                currentUser.setFullName(content);
+                break;
+            case "role":
+                currentUser.setRole(content);
+                break;
+            case "start_coord":
+                currentSegment.setStartCoord(content);
+                break;
+            case "end_coord":
+                currentSegment.setEndCoord(content);
+                break;
+            case "length":
+                currentSegment.setLength(Double.parseDouble(content));
+                break;
+            case "quality_factor":
+                currentSegment.setQualityFactor(Double.parseDouble(content));
+                break;
+            case "user_intensity":
+                currentSegment.setUserIntensity(Double.parseDouble(content));
+                break;
+            case "start_point":
+                currentRequest.setStartPoint(content);
+                break;
+            case "end_point":
+                currentRequest.setEndPoint(content);
+                break;
+            case "datetime":
+                currentRequest.setDatetime(content);
+                break;
+            case "preference_parameter":
+                currentRequest.setPreferenceParameter(content);
+                break;
+            case "status":
+                currentRequest.setStatus(content);
+                break;
+        }
+
         if ("ns:roadSegment".equals(qName)) {
             double efficiency = (currentSegment.getQualityFactor() * currentSegment.getUserIntensity()) / currentSegment.getLength();
-            htmlContent.append("<tr>\n")
-                       .append("<td>").append(currentSegment.getId()).append("</td>\n")
-                       .append("<td>").append(currentSegment.getStartCoord()).append("</td>\n")
-                       .append("<td>").append(currentSegment.getEndCoord()).append("</td>\n")
-                       .append("<td>").append(currentSegment.getLength()).append("</td>\n")
-                       .append("<td>").append(currentSegment.getQualityFactor()).append("</td>\n")
-                       .append("<td>").append(currentSegment.getUserIntensity()).append("</td>\n")
-                       .append("<td>").append(String.format("%.2f", efficiency)).append("</td>\n")
-                       .append("</tr>");
+            htmlContent.append("<tr>")
+                      .append("<td>").append(currentSegment.getId()).append("</td>")
+                      .append("<td>").append(currentSegment.getStartCoord()).append("</td>")
+                      .append("<td>").append(currentSegment.getEndCoord()).append("</td>")
+                      .append("<td>").append(currentSegment.getLength()).append("</td>")
+                      .append("<td>").append(currentSegment.getQualityFactor()).append("</td>")
+                      .append("<td>").append(currentSegment.getUserIntensity()).append("</td>")
+                      .append("<td>").append(String.format("%.2f", efficiency)).append("</td>")
+                      .append("</tr>\n");
             totalLength += currentSegment.getLength();
         }
     }
 
-    public String generateHTML() {
-        htmlContent.append("<h2>User Info</h2>\n")
-                   .append("<p><strong>Email:</strong> ").append(currentUser.getEmail()).append("</p>\n")
-                   .append("<p><strong>Name:</strong> ").append(currentUser.getFullName()).append("</p>\n")
-                   .append("<h2>Request Info</h2>\n")
-                   .append("<p><strong>Start Point:</strong> ").append(currentRequest.getStartPoint()).append("</p>\n")
-                   .append("<p><strong>End Point:</strong> ").append(currentRequest.getEndPoint()).append("</p>\n")
-                   .append("<p><strong>Status:</strong> ").append(currentRequest.getStatus()).append("</p>\n")
-                   .append("<h2>Road Segments</h2>\n")
-                   .append("<table border=\"1\">\n<thead>\n<tr>\n<th>ID</th>\n<th>Start Coord</th>\n<th>End Coord</th>\n")
-                   .append("<th>Length (m)</th>\n<th>Quality Factor</th>\n<th>User Intensity</th>\n<th>Efficiency</th>\n</tr>\n</thead>\n<tbody>");
-        
-        htmlContent.append("</tbody>\n<tfoot>\n<tr>\n<td colspan=\"3\">Total Length</td>\n")
-                   .append("<td>").append(totalLength).append("</td>\n<td colspan=\"3\"></td>\n</tr>\n</tfoot>\n</table>\n");
-        
-        return htmlContent.toString();
-    }
+public String generateHTML() {
+    // Сначала собираем основную таблицу
+    String tableHtml = "<h2>Road Segments</h2>\n" +
+            "<table border=\"1\">\n" +
+            "<thead><tr>" +
+            "<th>ID</th><th>Start Coord</th><th>End Coord</th>" +
+            "<th>Length</th><th>Quality</th><th>Intensity</th><th>Efficiency</th>" +
+            "</tr></thead>\n<tbody>\n" +
+            htmlContent.toString() + 
+            "</tbody>\n<tfoot><tr>" +
+            "<td colspan=\"3\">Total Length</td>" +
+            "<td>" + totalLength + "</td>" +
+            "<td colspan=\"3\"></td>" +
+            "</tr></tfoot>\n</table>\n";
+
+    StringBuilder fullHtml = new StringBuilder();
+    fullHtml.append("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n")
+           .append("<meta charset=\"UTF-8\">\n")
+           .append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n")
+           .append("<title>XML Data</title>\n</head>\n<body>\n")
+           .append("<h1>Road Segments Data</h1>\n")
+           .append("<h2>User Info</h2>\n")
+           .append("<p><strong>Email:</strong> ").append(currentUser.getEmail()).append("</p>\n")
+           .append("<p><strong>Name:</strong> ").append(currentUser.getFullName()).append("</p>\n")
+           .append("<p><strong>Role:</strong> ").append(currentUser.getRole()).append("</p>\n")
+           .append("<h2>Request Info</h2>\n")
+           .append("<p><strong>Start Point:</strong> ").append(currentRequest.getStartPoint()).append("</p>\n")
+           .append("<p><strong>End Point:</strong> ").append(currentRequest.getEndPoint()).append("</p>\n")
+           .append("<p><strong>Date/Time:</strong> ").append(currentRequest.getDatetime()).append("</p>\n")
+           .append("<p><strong>Preference:</strong> ").append(currentRequest.getPreferenceParameter()).append("</p>\n")
+           .append("<p><strong>Status:</strong> ").append(currentRequest.getStatus()).append("</p>\n")
+           .append(tableHtml)
+           .append("</body>\n</html>");
+
+    return fullHtml.toString();
+}
 }
