@@ -4,47 +4,47 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     
     <ns:user>
-        <id>1</id>
-        <email>parahinkv@gmail.com</email>
-        <role>admin</role>
-        <full_name>Kirill</full_name>
+        <ns:id>1</ns:id>
+        <ns:email>parahinkv@gmail.com</ns:email>
+        <ns:role>admin</ns:role>
+        <ns:full_name>Kirill</ns:full_name>
     </ns:user>
     
     <ns:request>
-        <id>1</id>
-        <user_id>1</user_id>
-        <start_point>40.7128, -74.0060</start_point>
-        <end_point>40.7138, -74.0050</end_point>
-        <datetime>2025-03-09T12:00:00</datetime>
-        <preference_parameter>fastest</preference_parameter>
-        <status>pending</status>
+        <ns:id>1</ns:id>
+        <ns:user_id>1</ns:user_id>
+        <ns:start_point>40.7128, -74.0060</ns:start_point>
+        <ns:end_point>40.7138, -74.0050</ns:end_point>
+        <ns:datetime>2025-03-09T12:00:00</ns:datetime>
+        <ns:preference_parameter>fastest</ns:preference_parameter>
+        <ns:status>pending</ns:status>
     </ns:request>
 
     <ns:crossroad>
-        <id>1</id>
-        <city_id>1</city_id>
-        <coord>40.7128, -74.0060</coord>
-        <type>traffic_light</type>
+        <ns:id>1</ns:id>
+        <ns:city_id>1</ns:city_id>
+        <ns:coord>40.7128, -74.0060</ns:coord>
+        <ns:type>traffic_light</ns:type>
     </ns:crossroad>
 
     <ns:roadSegment>
-        <id>1</id>
-        <city_id>1</city_id>
-        <start_coord>40.7128, -74.0060</start_coord>
-        <end_coord>40.7138, -74.0050</end_coord>
-        <length>400.5</length>
-        <quality_factor>0.8</quality_factor>
-        <user_intensity>0.9</user_intensity>
+        <ns:id>1</ns:id>
+        <ns:city_id>1</ns:city_id>
+        <ns:start_coord>40.7128, -74.0060</ns:start_coord>
+        <ns:end_coord>40.7138, -74.0050</ns:end_coord>
+        <ns:length>400.5</ns:length>
+        <ns:quality_factor>0.8</ns:quality_factor>
+        <ns:user_intensity>0.9</ns:user_intensity>
     </ns:roadSegment>
 
     <ns:roadSegment>
-        <id>2</id>
-        <city_id>1</city_id>
-        <start_coord>40.7138, -74.0050</start_coord>
-        <end_coord>40.7148, -74.0040</end_coord>
-        <length>300.2</length>
-        <quality_factor>0.7</quality_factor>
-        <user_intensity>0.6</user_intensity>
+        <ns:id>2</ns:id>
+        <ns:city_id>1</ns:city_id>
+        <ns:start_coord>40.7138, -74.0050</ns:start_coord>
+        <ns:end_coord>40.7148, -74.0040</ns:end_coord>
+        <ns:length>300.2</ns:length>
+        <ns:quality_factor>0.7</ns:quality_factor>
+        <ns:user_intensity>0.4</ns:user_intensity>
     </ns:roadSegment>
 
 </ns:document>
