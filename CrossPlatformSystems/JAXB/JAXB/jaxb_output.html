@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XML Data Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .section { margin-bottom: 30px; }
+        .section-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; }
+        .footer { font-weight: bold; background-color: #e6e6e6; }
+    </style>
+</head>
+<body>
+<div class="section">
+    <div class="section-title">User Information</div>
+    <table>
+        <tr><th>ID</th><td>1</td></tr>
+        <tr><th>Email</th><td>parahinkv@gmail.com</td></tr>
+        <tr><th>Role</th><td>admin</td></tr>
+        <tr><th>Full Name</th><td>Kirill</td></tr>
+    </table>
+</div>
+<div class="section">
+    <div class="section-title">Request Information</div>
+    <table>
+        <tr><th>ID</th><td>1</td></tr>
+        <tr><th>User ID</th><td>1</td></tr>
+        <tr><th>Start Point</th><td>40.7128, -74.0060</td></tr>
+        <tr><th>End Point</th><td>40.7138, -74.0050</td></tr>
+        <tr><th>Datetime</th><td>2025-03-09T12:00:00</td></tr>
+        <tr><th>Preference Parameter</th><td>fastest</td></tr>
+        <tr><th>Status</th><td>processed</td></tr>
+    </table>
+</div>
+<div class="section">
+    <div class="section-title">Crossroad Information</div>
+    <table>
+        <tr><th>ID</th><td>1</td></tr>
+        <tr><th>City ID</th><td>1</td></tr>
+        <tr><th>Coordinates</th><td>40.7128, -74.0060</td></tr>
+        <tr><th>Type</th><td>traffic_light</td></tr>
+    </table>
+</div>
+<div class="section">
+    <div class="section-title">Road Segments</div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>City ID</th>
+            <th>Start Coordinates</th>
+            <th>End Coordinates</th>
+            <th>Length</th>
+            <th>Quality Factor</th>
+            <th>User Intensity</th>
+            <th>Rating (QF * UI)</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>40.7128, -74.0060</td>
+            <td>40.7138, -74.0050</td>
+            <td>400.50</td>
+            <td>0.8</td>
+            <td>0.9</td>
+            <td>0.72</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>1</td>
+            <td>40.7138, -74.0050</td>
+            <td>40.7148, -74.0040</td>
+            <td>300.20</td>
+            <td>0.7</td>
+            <td>0.4</td>
+            <td>0.28</td>
+        </tr>
+        <tr class="footer">
+            <td colspan="4">TOTAL</td>
+            <td>700.70</td>
+            <td colspan="2">AVERAGE RATING</td>
+            <td>0.50</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
