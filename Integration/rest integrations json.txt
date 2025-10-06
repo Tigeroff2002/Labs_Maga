@@ -1,0 +1,34 @@
+{
+  "guid": "string",
+  "coords_range": {
+    "start_coord": {
+      "width": 56.16382,
+      "heigth": 40.46866
+    },
+    "end_coord": {
+      "width": 56.13492,
+      "heigth": 40.40531
+    }
+  }
+}
+
+{
+	"request_id":"string",
+	"is_live":false,
+	"request_type":"simple",
+	"request_params":
+	{
+		"coords_range":
+		{
+			"start_coord":{
+				"width":56.16382,
+				"heigth":40.46866
+		},
+			"end_coord":
+			{
+				"width":56.13492,
+				"heigth":40.40531
+			}
+		}
+	}
+}
