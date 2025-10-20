@@ -1,0 +1,243 @@
+@startuml
+|Пользователь|
+|Logistic-API|
+|Logistic-Payment|
+|Logistic-Builder|
+
+start
+
+|Пользователь|
+:Аутентифицируется\nв системе;
+
+|Logistic-API|
+:Получает учетные\nданные;
+
+|Пользователь|
+:Выбирает точки маршрута\nна карте;
+:Отправляет запрос\nна построение;
+
+|Logistic-API|
+:Получает запрос;
+:Валидирует данные;
+
+|Logistic-Payment|
+|Logistic-API|
+:Запрос статуса\nподписки;
+
+|Logistic-Payment|
+:Проверяет наличие\nактивной подписки;
+:Возвращает статус;
+
+|Logistic-API|
+if (Подписка активна?) then (Да)
+  :Формирует команду\nперсонализации;
+else (Нет)
+  :Формирует команду\nстандартного маршрута;
+endif
+
+|Logistic-Builder|
+|Logistic-API|
+:Отправляет команду\nна построение;
+
+|Logistic-Builder|
+:Строит сегменты\nмаршрута;
+:Возвращает\nрезультат;
+
+|Logistic-API|
+:Формирует ответ;
+
+|Пользователь|
+:Получает маршрут\nв приложении;
+
+|Пользователь|
+if (Маршрут устраивает?) then (Да)
+  :Использует маршрут;
+  stop
+else (Нет)
+  :Запрашивает\nперегенерацию;
+  |Logistic-API|
+  :Получает запрос\nна перегенерацию;
+  |Logistic-Builder|
+  :Перестраивает\nмаршрут;
+  |Logistic-API|
+  :Возвращает\nобновленный маршрут;
+  |Пользователь|
+  :Получает новый\nвариант маршрута;
+  detach
+endif
+
+@enduml
+
+@startuml
+|Пользователь|
+|Logistic-API|
+|Logistic-Payment|
+|Logistic-Builder|
+
+|Пользователь|
+start
+:Аутентифицируется\nв системе;
+
+|Logistic-API|
+note left
+ **Триггер:**
+ Запрос аутентификации
+end note
+:Получает учетные\nданные;
+
+|Пользователь|
+:Выбирает точки маршрута\nна карте;
+:Отправляет запрос\nна построение;
+note right
+ **Триггер:**
+ Получение запроса
+на маршрут
+end note
+
+|Logistic-API|
+:Получает запрос;
+:Валидирует данные;
+
+|Logistic-Payment|
+|Logistic-API|
+:Запрос статуса\nподписки;
+note right
+ **Триггер:**
+ Необходимость проверки
+подписки
+end note
+
+|Logistic-Payment|
+:Проверяет наличие\nактивной подписки;
+:Возвращает статус;
+
+|Logistic-API|
+if (Подписка активна?) then (Да)
+  :Формирует команду\nперсонализации;
+else (Нет)
+  :Формирует команду\nстандартного маршрута;
+endif
+
+|Logistic-Builder|
+|Logistic-API|
+:Отправляет команду\nна построение;
+note right
+ **Триггер:**
+ Команда на построение
+маршрута
+end note
+
+|Logistic-Builder|
+:Строит сегменты\nмаршрута;
+:Возвращает\nрезультат;
+
+|Logistic-API|
+:Формирует ответ;
+note left
+ **Триггер:**
+ Получение результата
+построения
+end note
+
+|Пользователь|
+:Получает маршрут\nв приложении;
+
+|Пользователь|
+if (Маршрут устраивает?) then (Да)
+  :Использует маршрут;
+  :Завершает процесс;
+  stop
+else (Нет)
+  :Запрашивает\nперегенерацию;
+  |Logistic-API|
+  note left
+   **Триггер:**
+   Запрос перегенерации
+  end note
+  :Получает запрос\nна перегенерацию;
+  |Logistic-Builder|
+  :Перестраивает\nмаршрут;
+  |Logistic-API|
+  :Возвращает\nобновленный маршрут;
+  note left
+   **Триггер:**
+   Получение нового
+   варианта маршрута
+  end note
+
+  |Пользователь|
+  :Получает новый\nвариант маршрута;
+  ->Да;
+  :Использует маршрут;
+  :Завершает процесс;
+  stop
+endif
+
+@startuml
+!define RECTANGLE class
+skinparam nodesep 10
+skinparam ranksep 50
+
+package "Клиентская часть" {
+  [Frontend Client] as Frontend
+}
+
+package "Бэкенд сервисы" {
+  [Logistic-API] as API
+  [Logistic-Builder] as Builder
+  [Logistic-Payment] as Payment
+}
+
+database "Logistic-DB" as DB {
+  [Таблицы команд]
+  [Outbox таблицы]
+}
+
+package "Внешние сервисы" {
+  [OAuth Service] as OAuth
+  [YooMoney Payment Gateway] as YooMoney
+  [OpenStreetMap Service] as OSM
+}
+
+' Основные соединения
+Frontend -[#blue]--> API : HTTP REST (запросы)\n**1. Пользовательские действия**
+Frontend <-[#blue]-> API : WebSocket (двунаправл.)\n**2. Реальные обновления**
+
+API -[#green]--> OAuth : HTTP REST\n**3. Аутентификация**
+
+API -[#red]-> DB : CRUD операции\n**4. Сохранение команд**
+Builder -[#red]-> DB : Чтение команд\n**5. Outbox паттерн**
+Payment -[#red]-> DB : Чтение команд\n**6. Outbox паттерн**
+
+Payment -[#orange]--> YooMoney : HTTP REST\n**7. Платежные операции**
+YooMoney -[#orange]--> Payment : HTTP WebHooks\n**8. Уведомления о платежах**
+
+Builder -[#purple]--> OSM : HTTP GET\n**9. Получение картографических данных**
+
+Builder -[#brown]--> API : HTTP WebHooks\n**10. Результаты построения**
+Payment -[#brown]--> API : HTTP WebHooks\n**11. Статусы платежей**
+
+API -[#blue]--> Frontend : WebSocket события\n**12. Уведомления клиента**
+
+note right of API
+  **Logistic-API:**
+  - Координирует процесс
+  - Управляет командами
+  - Рассылает события
+end note
+
+note right of Builder
+  **Logistic-Builder:**
+  - Строит маршруты
+  - Использует OSM данные
+  - Отправляет результаты
+end note
+
+note right of Payment
+  **Logistic-Payment:**
+  - Обрабатывает платежи
+  - Интегрирует с YooMoney
+  - Управляет подписками
+end note
+
+@enduml
