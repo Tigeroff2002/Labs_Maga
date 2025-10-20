@@ -1,0 +1,87 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<!--  Published by XML-WS Runtime (https://github.com/eclipse-ee4j/metro-jax-ws). Runtime's version is XML-WS Runtime 4.0.1 git-revision#298606e.  -->
+<xs:schema xmlns:tns="http://userservice.example.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://userservice.example.com/">
+<xs:element name="changeNickname" type="tns:changeNickname"/>
+<xs:element name="changeNicknameResponse" type="tns:changeNicknameResponse"/>
+<xs:element name="getUserRole" type="tns:getUserRole"/>
+<xs:element name="getUserRoleResponse" type="tns:getUserRoleResponse"/>
+<xs:element name="loginUser" type="tns:loginUser"/>
+<xs:element name="loginUserResponse" type="tns:loginUserResponse"/>
+<xs:element name="registerUser" type="tns:registerUser"/>
+<xs:element name="registerUserResponse" type="tns:registerUserResponse"/>
+<xs:element name="removeUser" type="tns:removeUser"/>
+<xs:element name="removeUserResponse" type="tns:removeUserResponse"/>
+<xs:complexType name="changeNickname">
+<xs:sequence>
+<xs:element name="email" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+<xs:element name="newNickname" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="changeNicknameResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:ServiceResponse" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ServiceResponse">
+<xs:sequence>
+<xs:element name="success" type="xs:boolean"/>
+<xs:element name="message" type="xs:string"/>
+<xs:element name="user" type="tns:User" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="User">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="nickname" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="role" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="registerUser">
+<xs:sequence>
+<xs:element name="email" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+<xs:element name="nickname" type="xs:string"/>
+<xs:element name="role" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="registerUserResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:ServiceResponse" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeUser">
+<xs:sequence>
+<xs:element name="email" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="removeUserResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:ServiceResponse" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getUserRole">
+<xs:sequence>
+<xs:element name="email" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getUserRoleResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:ServiceResponse" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="loginUser">
+<xs:sequence>
+<xs:element name="email" type="xs:string"/>
+<xs:element name="password" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="loginUserResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:ServiceResponse" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
