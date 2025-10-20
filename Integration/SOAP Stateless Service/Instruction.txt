@@ -1,0 +1,10 @@
+# Скомпилировать и скопировать зависимости
+mvn clean compile dependency:copy-dependencies
+
+# Запустить сервер
+java -cp "target/classes;target/dependency/*" com.example.userservice.UserServicePublisher
+
+# Запустить клиент
+java -cp "target/classes;target/dependency/*" com.example.userservice.client.UserServiceClient
+
+http://localhost:8080/userservice?xsd=1
