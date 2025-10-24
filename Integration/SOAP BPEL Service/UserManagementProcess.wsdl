@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="UserManagementProcess"
+    targetNamespace="http://example.com/userbpel"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+    xmlns:tns="http://example.com/userbpel"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+    <types>
+        <xsd:schema targetNamespace="http://example.com/userbpel">
+            <!-- Сообщения для нашего BPEL процесса -->
+            <xsd:element name="userOperationRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="operation" type="xsd:string"/>
+                        <xsd:element name="username" type="xsd:string"/>
+                        <xsd:element name="password" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            
+            <xsd:element name="userOperationResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="xsd:string"/>
+                        <xsd:element name="status" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <!-- Сообщения для UserService -->
+            <xsd:element name="registerUser">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="username" type="xsd:string"/>
+                        <xsd:element name="password" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            
+            <xsd:element name="registerUserResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="return" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            
+            <xsd:element name="loginUser">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="username" type="xsd:string"/>
+                        <xsd:element name="password" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            
+            <xsd:element name="loginUserResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="return" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            
+            <xsd:element name="getUserRole">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="username" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            
+            <xsd:element name="getUserRoleResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="return" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+
+    <!-- Сообщения для нашего BPEL процесса -->
+    <message name="userOperationRequestMessage">
+        <part name="payload" element="tns:userOperationRequest"/>
+    </message>
+    
+    <message name="userOperationResponseMessage">
+        <part name="payload" element="tns:userOperationResponse"/>
+    </message>
+
+    <!-- Сообщения для UserService -->
+    <message name="registerUserMessage">
+        <part name="parameters" element="tns:registerUser"/>
+    </message>
+    
+    <message name="registerUserResponseMessage">
+        <part name="parameters" element="tns:registerUserResponse"/>
+    </message>
+    
+    <message name="loginUserMessage">
+        <part name="parameters" element="tns:loginUser"/>
+    </message>
+    
+    <message name="loginUserResponseMessage">
+        <part name="parameters" element="tns:loginUserResponse"/>
+    </message>
+    
+    <message name="getUserRoleMessage">
+        <part name="parameters" element="tns:getUserRole"/>
+    </message>
+    
+    <message name="getUserRoleResponseMessage">
+        <part name="parameters" element="tns:getUserRoleResponse"/>
+    </message>
+
+    <!-- PortType для нашего BPEL процесса -->
+    <portType name="UserManagementPortType">
+        <operation name="processUserOperation">
+            <input message="tns:userOperationRequestMessage"/>
+            <output message="tns:userOperationResponseMessage"/>
+        </operation>
+    </portType>
+
+    <!-- PortType для UserService -->
+    <portType name="UserServicePortType">
+        <operation name="registerUser">
+            <input message="tns:registerUserMessage"/>
+            <output message="tns:registerUserResponseMessage"/>
+        </operation>
+        <operation name="loginUser">
+            <input message="tns:loginUserMessage"/>
+            <output message="tns:loginUserResponseMessage"/>
+        </operation>
+        <operation name="getUserRole">
+            <input message="tns:getUserRoleMessage"/>
+            <output message="tns:getUserRoleResponseMessage"/>
+        </operation>
+    </portType>
+
+    <!-- Binding для реального SOAP сервиса -->
+    <binding name="UserServiceBinding" type="tns:UserServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="registerUser">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="loginUser">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getUserRole">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="UserService">
+        <port name="UserServicePort" binding="tns:UserServiceBinding">
+            <soap:address location="http://localhost:8081/userservice"/>
+        </port>
+    </service>
+
+    <!-- Partner Link Types -->
+    <plnk:partnerLinkType name="UserManagementPLT">
+        <plnk:role name="UserManagementService">
+            <plnk:portType name="tns:UserManagementPortType"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+
+    <plnk:partnerLinkType name="UserServicePLT">
+        <plnk:role name="UserServiceProvider">
+            <plnk:portType name="tns:UserServicePortType"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+
+</definitions>

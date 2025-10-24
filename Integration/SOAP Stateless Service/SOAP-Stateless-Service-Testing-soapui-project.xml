@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="64053fbe-3fcf-42c5-bdac-3be609f1d67f" activeEnvironment="Default" name="SOAP_Stateless_Service_Testing" resourceRoot="" soapui-version="5.9.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="ec122221-51e5-4cf7-b633-57075059d273" wsaVersion="NONE" name="UserServicePortBinding" type="wsdl" bindingName="{http://userservice.example.com/}UserServicePortBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/kparakhin/Desktop/Labs_Maga/Integration/SOAP%20Stateless%20Service/userservice.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\kparakhin\Desktop\Labs_Maga\Integration\SOAP%20Stateless%20Service\userservice.wsdl"><con:part><con:url>file:\C:\Users\kparakhin\Desktop\Labs_Maga\Integration\SOAP%20Stateless%20Service\userservice.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://userservice.example.com/" name="UserService" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://userservice.example.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://userservice.example.com/" schemaLocation="http://localhost:8080/userservice?xsd=1"/>
+    </xsd:schema>
+  </types>
+  <message name="registerUser">
+    <part name="parameters" element="tns:registerUser"/>
+  </message>
+  <message name="registerUserResponse">
+    <part name="parameters" element="tns:registerUserResponse"/>
+  </message>
+  <message name="removeUser">
+    <part name="parameters" element="tns:removeUser"/>
+  </message>
+  <message name="removeUserResponse">
+    <part name="parameters" element="tns:removeUserResponse"/>
+  </message>
+  <message name="loginUser">
+    <part name="parameters" element="tns:loginUser"/>
+  </message>
+  <message name="loginUserResponse">
+    <part name="parameters" element="tns:loginUserResponse"/>
+  </message>
+  <message name="getUserRole">
+    <part name="parameters" element="tns:getUserRole"/>
+  </message>
+  <message name="getUserRoleResponse">
+    <part name="parameters" element="tns:getUserRoleResponse"/>
+  </message>
+  <message name="changeNickname">
+    <part name="parameters" element="tns:changeNickname"/>
+  </message>
+  <message name="changeNicknameResponse">
+    <part name="parameters" element="tns:changeNicknameResponse"/>
+  </message>
+  <portType name="UserService">
+    <operation name="registerUser">
+      <input wsam:Action="http://userservice.example.com/UserService/registerUserRequest" message="tns:registerUser"/>
+      <output wsam:Action="http://userservice.example.com/UserService/registerUserResponse" message="tns:registerUserResponse"/>
+    </operation>
+    <operation name="removeUser">
+      <input wsam:Action="http://userservice.example.com/UserService/removeUserRequest" message="tns:removeUser"/>
+      <output wsam:Action="http://userservice.example.com/UserService/removeUserResponse" message="tns:removeUserResponse"/>
+    </operation>
+    <operation name="loginUser">
+      <input wsam:Action="http://userservice.example.com/UserService/loginUserRequest" message="tns:loginUser"/>
+      <output wsam:Action="http://userservice.example.com/UserService/loginUserResponse" message="tns:loginUserResponse"/>
+    </operation>
+    <operation name="getUserRole">
+      <input wsam:Action="http://userservice.example.com/UserService/getUserRoleRequest" message="tns:getUserRole"/>
+      <output wsam:Action="http://userservice.example.com/UserService/getUserRoleResponse" message="tns:getUserRoleResponse"/>
+    </operation>
+    <operation name="changeNickname">
+      <input wsam:Action="http://userservice.example.com/UserService/changeNicknameRequest" message="tns:changeNickname"/>
+      <output wsam:Action="http://userservice.example.com/UserService/changeNicknameResponse" message="tns:changeNicknameResponse"/>
+    </operation>
+  </portType>
+  <binding name="UserServicePortBinding" type="tns:UserService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="registerUser">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="removeUser">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="loginUser">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getUserRole">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="changeNickname">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="UserService">
+    <port name="UserServicePort" binding="tns:UserServicePortBinding">
+      <soap:address location="http://localhost:8080/userservice"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/userservice?xsd=1</con:url><con:content><![CDATA[<!--Published by XML-WS Runtime (https://github.com/eclipse-ee4j/metro-jax-ws). Runtime's version is XML-WS Runtime 4.0.1 git-revision#298606e.-->
+<xs:schema version="1.0" targetNamespace="http://userservice.example.com/" xmlns:tns="http://userservice.example.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="changeNickname" type="tns:changeNickname"/>
+  <xs:element name="changeNicknameResponse" type="tns:changeNicknameResponse"/>
+  <xs:element name="getUserRole" type="tns:getUserRole"/>
+  <xs:element name="getUserRoleResponse" type="tns:getUserRoleResponse"/>
+  <xs:element name="loginUser" type="tns:loginUser"/>
+  <xs:element name="loginUserResponse" type="tns:loginUserResponse"/>
+  <xs:element name="registerUser" type="tns:registerUser"/>
+  <xs:element name="registerUserResponse" type="tns:registerUserResponse"/>
+  <xs:element name="removeUser" type="tns:removeUser"/>
+  <xs:element name="removeUserResponse" type="tns:removeUserResponse"/>
+  <xs:complexType name="changeNickname">
+    <xs:sequence>
+      <xs:element name="email" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element name="newNickname" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="changeNicknameResponse">
+    <xs:sequence>
+      <xs:element name="response" type="tns:ServiceResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ServiceResponse">
+    <xs:sequence>
+      <xs:element name="success" type="xs:boolean"/>
+      <xs:element name="message" type="xs:string"/>
+      <xs:element name="user" type="tns:User" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="nickname" type="xs:string" minOccurs="0"/>
+      <xs:element name="password" type="xs:string" minOccurs="0"/>
+      <xs:element name="role" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registerUser">
+    <xs:sequence>
+      <xs:element name="email" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element name="nickname" type="xs:string"/>
+      <xs:element name="role" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registerUserResponse">
+    <xs:sequence>
+      <xs:element name="response" type="tns:ServiceResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="removeUser">
+    <xs:sequence>
+      <xs:element name="email" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="removeUserResponse">
+    <xs:sequence>
+      <xs:element name="response" type="tns:ServiceResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserRole">
+    <xs:sequence>
+      <xs:element name="email" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserRoleResponse">
+    <xs:sequence>
+      <xs:element name="response" type="tns:ServiceResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginUser">
+    <xs:sequence>
+      <xs:element name="email" type="xs:string"/>
+      <xs:element name="password" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginUserResponse">
+    <xs:sequence>
+      <xs:element name="response" type="tns:ServiceResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/userservice</con:endpoint></con:endpoints><con:operation id="8a8d46f4-0369-47d0-8a11-e05f0afbb803" isOneWay="false" action="" name="changeNickname" bindingOperationName="changeNickname" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="849340cc-607a-4ba1-8655-1f8384345c80" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://userservice.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:changeNickname>\r
+         <email>?</email>\r
+         <password>?</password>\r
+         <newNickname>?</newNickname>\r
+      </user:changeNickname>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://userservice.example.com/UserService/changeNicknameRequest"/></con:call></con:operation><con:operation id="4b84c50a-06a9-4516-98db-744959f234d9" isOneWay="false" action="" name="getUserRole" bindingOperationName="getUserRole" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8ad8cae5-3158-46bd-8f0f-9fa2dce2a2cf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://userservice.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:getUserRole>\r
+         <email>?</email>\r
+         <password>?</password>\r
+      </user:getUserRole>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://userservice.example.com/UserService/getUserRoleRequest"/></con:call></con:operation><con:operation id="21a5fa57-7c9b-4a3a-a625-ce155260f61d" isOneWay="false" action="" name="loginUser" bindingOperationName="loginUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="42f3c728-69f2-4a2b-aa3e-58237257e674" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://userservice.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:loginUser>\r
+         <email>?</email>\r
+         <password>?</password>\r
+      </user:loginUser>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://userservice.example.com/UserService/loginUserRequest"/></con:call></con:operation><con:operation id="ba003403-141f-4638-b4d7-c787d7f42c63" isOneWay="false" action="" name="registerUser" bindingOperationName="registerUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1634d11b-6b46-475a-9582-03cf2a5380c7" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://userservice.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:registerUser>\r
+         <email>parahinkv@gmail.com</email>\r
+         <password>root</password>\r
+         <nickname>kirill</nickname>\r
+         <role>user</role>\r
+      </user:registerUser>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://userservice.example.com/UserService/registerUserRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="8331b27c-fd65-478c-81fa-6c53302985e4" isOneWay="false" action="" name="removeUser" bindingOperationName="removeUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ba1f1a75-b404-4748-97a1-09fe371d9ac9" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/userservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://userservice.example.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <user:removeUser>\r
+         <email>?</email>\r
+         <password>?</password>\r
+      </user:removeUser>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://userservice.example.com/UserService/removeUserRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

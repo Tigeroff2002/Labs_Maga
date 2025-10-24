@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="UserManagementProcess"
+         targetNamespace="http://example.com/userbpel"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:tns="http://example.com/userbpel"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+
+    <partnerLinks>
+        <partnerLink name="client" 
+                    partnerLinkType="tns:UserManagementPLT"
+                    myRole="UserManagementService"/>
+                    
+        <partnerLink name="userService" 
+                    partnerLinkType="tns:UserServicePLT"
+                    partnerRole="UserServiceProvider"/>
+    </partnerLinks>
+
+    <variables>
+        <!-- Input/Output для нашего BPEL процесса -->
+        <variable name="input" messageType="tns:userOperationRequestMessage"/>
+        <variable name="output" messageType="tns:userOperationResponseMessage"/>
+        
+        <!-- Переменные для вызовов UserService -->
+        <variable name="registerRequest" messageType="tns:registerUserMessage"/>
+        <variable name="registerResponse" messageType="tns:registerUserResponseMessage"/>
+        <variable name="loginRequest" messageType="tns:loginUserMessage"/>
+        <variable name="loginResponse" messageType="tns:loginUserResponseMessage"/>
+        <variable name="getRoleRequest" messageType="tns:getUserRoleMessage"/>
+        <variable name="getRoleResponse" messageType="tns:getUserRoleResponseMessage"/>
+    </variables>
+
+    <!-- Fault Handlers -->
+    <faultHandlers>
+        <catchAll>
+            <sequence>
+                <assign>
+                    <copy>
+                        <from>'Service error occurred'</from>
+                        <to variable="output" part="payload"/>
+                    </copy>
+                </assign>
+                <reply partnerLink="client" 
+                       portType="tns:UserManagementPortType" 
+                       operation="processUserOperation" 
+                       variable="output"/>
+            </sequence>
+        </catchAll>
+    </faultHandlers>
+
+    <!-- Main Process -->
+    <sequence>
+        <!-- Receive Input -->
+        <receive name="receiveInput" 
+                partnerLink="client"
+                portType="tns:UserManagementPortType"
+                operation="processUserOperation"
+                variable="input"
+                createInstance="yes"/>
+        
+        <!-- Switch between operations -->
+        <switch name="operationSwitch">
+            
+            <!-- Case 1: Register User -->
+            <case condition="$input.payload/tns:operation = 'register'">
+                <sequence name="registerSequence">
+                    
+                    <!-- Prepare register request -->
+                    <assign name="prepareRegister">
+                        <copy>
+                            <from variable="input" part="payload">
+                                <query>/tns:userOperationRequest/tns:username</query>
+                            </from>
+                            <to variable="registerRequest" part="parameters">
+                                <query>/tns:registerUser/tns:username</query>
+                            </to>
+                        </copy>
+                        <copy>
+                            <from variable="input" part="payload">
+                                <query>/tns:userOperationRequest/tns:password</query>
+                            </from>
+                            <to variable="registerRequest" part="parameters">
+                                <query>/tns:registerUser/tns:password</query>
+                            </to>
+                        </copy>
+                    </assign>
+                    
+                    <!-- Call User Service register operation -->
+                    <invoke name="invokeRegister"
+                           partnerLink="userService"
+                           portType="tns:UserServicePortType"
+                           operation="registerUser"
+                           inputVariable="registerRequest"
+                           outputVariable="registerResponse"/>
+                    
+                    <!-- Prepare response -->
+                    <assign name="prepareRegisterResponse">
+                        <copy>
+                            <from>'User registered successfully'</from>
+                            <to variable="output" part="payload"/>
+                        </copy>
+                    </assign>
+                    
+                </sequence>
+            </case>
+            
+            <!-- Case 2: Login User -->
+            <case condition="$input.payload/tns:operation = 'login'">
+                <sequence name="loginSequence">
+                    
+                    <!-- Prepare login request -->
+                    <assign name="prepareLogin">
+                        <copy>
+                            <from variable="input" part="payload">
+                                <query>/tns:userOperationRequest/tns:username</query>
+                            </from>
+                            <to variable="loginRequest" part="parameters">
+                                <query>/tns:loginUser/tns:username</query>
+                            </to>
+                        </copy>
+                        <copy>
+                            <from variable="input" part="payload">
+                                <query>/tns:userOperationRequest/tns:password</query>
+                            </from>
+                            <to variable="loginRequest" part="parameters">
+                                <query>/tns:loginUser/tns:password</query>
+                            </to>
+                        </copy>
+                    </assign>
+                    
+                    <!-- Call User Service login operation -->
+                    <invoke name="invokeLogin"
+                           partnerLink="userService"
+                           portType="tns:UserServicePortType"
+                           operation="loginUser"
+                           inputVariable="loginRequest"
+                           outputVariable="loginResponse"/>
+                    
+                    <!-- Prepare get role request -->
+                    <assign name="prepareGetRole">
+                        <copy>
+                            <from variable="input" part="payload">
+                                <query>/tns:userOperationRequest/tns:username</query>
+                            </from>
+                            <to variable="getRoleRequest" part="parameters">
+                                <query>/tns:getUserRole/tns:username</query>
+                            </to>
+                        </copy>
+                    </assign>
+                    
+                    <!-- Call User Service get role operation -->
+                    <invoke name="invokeGetRole"
+                           partnerLink="userService"
+                           portType="tns:UserServicePortType"
+                           operation="getUserRole"
+                           inputVariable="getRoleRequest"
+                           outputVariable="getRoleResponse"/>
+                    
+                    <!-- Prepare response with XPath functions -->
+                    <assign name="prepareLoginResponse">
+                        <copy>
+                            <from expression="concat('Login successful for: ', $input.payload/tns:userOperationRequest/tns:username)"/>
+                            <to variable="output" part="payload"/>
+                        </copy>
+                    </assign>
+                    
+                </sequence>
+            </case>
+            
+            <!-- Default case: Invalid operation -->
+            <otherwise>
+                <sequence name="invalidOperationSequence">
+                    <assign name="prepareInvalidResponse">
+                        <copy>
+                            <from>'Invalid operation'</from>
+                            <to variable="output" part="payload"/>
+                        </copy>
+                    </assign>
+                </sequence>
+            </otherwise>
+        </switch>
+        
+        <!-- Send Response -->
+        <reply name="sendResponse"
+              partnerLink="client"
+              portType="tns:UserManagementPortType"
+              operation="processUserOperation"
+              variable="output"/>
+    </sequence>
+</process>

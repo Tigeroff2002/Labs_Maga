@@ -21,6 +21,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ServiceResponse registerUser(String email, String password, String nickname, String role) {
+        System.out.println("Received: ");
+        System.out.println("Email: " + email);
+        System.out.println("Password: " + password);
+        System.out.println("Nickname: " + nickname);
+        System.out.println("Role: " + role);
+
         try {
             if (users.containsKey(email)) {
                 return new ServiceResponse(false, "User with email " + email + " already exists");

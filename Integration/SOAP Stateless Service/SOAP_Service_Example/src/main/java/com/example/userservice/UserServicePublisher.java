@@ -4,7 +4,7 @@ import jakarta.xml.ws.Endpoint;
 
 public class UserServicePublisher {
     public static void main(String[] args) {
-        String address = "http://localhost:8080/userservice";
+        String address = "http://localhost:8081/userservice";
         Endpoint endpoint = Endpoint.publish(address, new UserServiceImpl());
 
         System.out.println("UserService is running at: " + address);

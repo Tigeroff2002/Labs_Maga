@@ -8,3 +8,9 @@ java -cp "target/classes;target/dependency/*" com.example.userservice.UserServic
 java -cp "target/classes;target/dependency/*" com.example.userservice.client.UserServiceClient
 
 http://localhost:8080/userservice?xsd=1
+
+curl -x POST \
+-H "Content-Type: text/xml;charset=utf-8" \
+-H "SOAPAction: \"urn:registerUser\"" \
+-d @registerUser.xml \
+http://localhost:8080/userservice

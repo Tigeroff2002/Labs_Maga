@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="UserManagementProcess"
+         targetNamespace="http://example.com/bpel/userManagement"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:tns="http://example.com/bpel/userManagement"
+         xmlns:usr="http://userservice.example.com/">
+
+    <!-- Partner Links -->
+    <partnerLinks>
+        <partnerLink name="client"
+                    partnerLinkType="tns:UserManagementPartnerLinkType"
+                    myRole="UserManagementService"/>
+
+        <partnerLink name="userService"
+                    partnerLinkType="tns:UserServicePartnerLinkType"
+                    partnerRole="UserServiceProvider"/>
+    </partnerLinks>
+
+    <!-- Variables -->
+    <variables>
+        <!-- Input/Output -->
+        <variable name="input" messageType="tns:manageUserRequest"/>
+        <variable name="output" messageType="tns:manageUserResponse"/>
+
+        <!-- User Service Calls -->
+        <variable name="registerRequest" messageType="usr:registerUser"/>
+        <variable name="registerResponse" messageType="usr:registerUserResponse"/>
+        <variable name="loginRequest" messageType="usr:loginUser"/>
+        <variable name="loginResponse" messageType="usr:loginUserResponse"/>
+    </variables>
+
+    <!-- Main Process -->
+    <sequence>
+        <!-- Receive Input -->
+        <receive name="receiveInput"
+                partnerLink="client"
+                portType="tns:UserManagementPortType"
+                operation="manageUser"
+                variable="input"
+                createInstance="yes"/>
+
+        <!-- Choose Operation -->
+        <if name="checkOperation">
+            <condition>
+                $input.payload/tns:operation = 'register'
+            </condition>
+
+            <!-- Register User -->
+            <sequence name="registerSequence">
+                <!-- Prepare Register Request -->
+                <assign name="prepareRegister">
+                    <copy>
+                        <from variable="input" part="payload" query="/tns:manageUserRequest/tns:username"/>
+                        <to variable="registerRequest" part="parameters" query="/usr:registerUser/usr:username"/>
+                    </copy>
+                    <copy>
+                        <from variable="input" part="payload" query="/tns:manageUserRequest/tns:password"/>
+                        <to variable="registerRequest" part="parameters" query="/usr:registerUser/usr:password"/>
+                    </copy>
+                </assign>
+
+                <!-- Call User Service -->
+                <invoke name="callRegister"
+                       partnerLink="userService"
+                       portType="usr:UserService"
+                       operation="registerUser"
+                       inputVariable="registerRequest"
+                       outputVariable="registerResponse"/>
+
+                <!-- Prepare Response -->
+                <assign name="prepareRegisterResponse">
+                    <copy>
+                        <from expression="'User registered successfully'"/>
+                        <to variable="output" part="payload" query="/tns:manageUserResponse/tns:result"/>
+                    </copy>
+                    <copy>
+                        <from expression="'SUCCESS'"/>
+                        <to variable="output" part="payload" query="/tns:manageUserResponse/tns:status"/>
+                    </copy>
+                </assign>
+            </sequence>
+
+            <elseif>
+                <condition>
+                    $input.payload/tns:operation = 'login'
+                </condition>
+
+                <!-- Login User -->
+                <sequence name="loginSequence">
+                    <!-- Prepare Login Request -->
+                    <assign name="prepareLogin">
+                        <copy>
+                            <from variable="input" part="payload" query="/tns:manageUserRequest/tns:username"/>
+                            <to variable="loginRequest" part="parameters" query="/usr:loginUser/usr:username"/>
+                        </copy>
+                        <copy>
+                            <from variable="input" part="payload" query="/tns:manageUserRequest/tns:password"/>
+                            <to variable="loginRequest" part="parameters" query="/usr:loginUser/usr:password"/>
+                        </copy>
+                    </assign>
+
+                    <!-- Call User Service -->
+                    <invoke name="callLogin"
+                           partnerLink="userService"
+                           portType="usr:UserService"
+                           operation="loginUser"
+                           inputVariable="loginRequest"
+                           outputVariable="loginResponse"/>
+
+                    <!-- Prepare Response -->
+                    <assign name="prepareLoginResponse">
+                        <copy>
+                            <from expression="concat('Login successful for: ', $input.payload/tns:manageUserRequest/tns:username)"/>
+                            <to variable="output" part="payload" query="/tns:manageUserResponse/tns:result"/>
+                        </copy>
+                        <copy>
+                            <from expression="'SUCCESS'"/>
+                            <to variable="output" part="payload" query="/tns:manageUserResponse/tns:status"/>
+                        </copy>
+                    </assign>
+                </sequence>
+            </elseif>
+
+            <else>
+                <!-- Invalid Operation -->
+                <assign name="prepareErrorResponse">
+                    <copy>
+                        <from expression="concat('Invalid operation: ', $input.payload/tns:manageUserRequest/tns:operation)"/>
+                        <to variable="output" part="payload" query="/tns:manageUserResponse/tns:result"/>
+                    </copy>
+                    <copy>
+                        <from expression="'ERROR'"/>
+                        <to variable="output" part="payload" query="/tns:manageUserResponse/tns:status"/>
+                    </copy>
+                </assign>
+            </else>
+        </if>
+
+        <!-- Send Response -->
+        <reply name="sendResponse"
+              partnerLink="client"
+              portType="tns:UserManagementPortType"
+              operation="manageUser"
+              variable="output"/>
+    </sequence>
+</process>

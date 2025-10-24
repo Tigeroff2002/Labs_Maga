@@ -11,7 +11,7 @@ public class UserServiceClient {
     private UserService userService;
 
     public UserServiceClient() throws Exception {
-        URL wsdlURL = new URL("http://localhost:8080/userservice?wsdl");
+        URL wsdlURL = new URL("http://localhost:8081/userservice?wsdl");
         QName serviceName = new QName("http://userservice.example.com/", "UserService");
         Service service = Service.create(wsdlURL, serviceName);
         userService = service.getPort(UserService.class);

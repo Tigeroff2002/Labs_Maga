@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope
+     xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+     xmlns:tns="http://userservice.example.com/">
+<soapenv:Header/>
+<soapenv:Body>
+    <tns:registerUser>
+        <tns:email>parahinkv@gmail.com</tns:email>
+        <tns:password>root</tns:password>
+        <tns:nickname>kirill</tns:nickname>
+        <tns:role>user</tns:role>
+    </tns:registerUser>
+</soapenv:Body>
+</soapenv:Envelope>

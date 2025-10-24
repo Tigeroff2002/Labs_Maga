@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="UserManagementProcess"
+             targetNamespace="http://example.com/bpel/userManagement"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+             xmlns:tns="http://example.com/bpel/userManagement"
+             xmlns:usr="http://userservice.example.com/">
+
+    <import namespace="http://userservice.example.com/"
+            location="http://localhost:8080/userservice?wsdl"/>
+
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://example.com/bpel/userManagement"
+                        schemaLocation="userManagement.xsd"/>
+        </xsd:schema>
+    </types>
+
+    <message name="manageUserRequest">
+        <part name="payload" element="tns:manageUserRequest"/>
+    </message>
+
+    <message name="manageUserResponse">
+        <part name="payload" element="tns:manageUserResponse"/>
+    </message>
+
+    <portType name="UserManagementPortType">
+        <operation name="manageUser">
+            <input message="tns:manageUserRequest"/>
+            <output message="tns:manageUserResponse"/>
+        </operation>
+    </portType>
+
+    <plnk:partnerLinkType name="UserManagementPartnerLinkType">
+        <plnk:role name="UserManagementService">
+            <plnk:portType name="tns:UserManagementPortType"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+
+    <plnk:partnerLinkType name="UserServicePartnerLinkType">
+        <plnk:role name="UserServiceProvider">
+            <plnk:portType name="usr:UserService"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+
+</definitions>

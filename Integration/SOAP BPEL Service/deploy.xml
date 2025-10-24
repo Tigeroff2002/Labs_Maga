@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03"
+        xmlns:tns="http://example.com/userbpel">
+    
+    <process name="tns:UserManagementProcess">
+        <active>true</active>
+        <provide partnerLink="client">
+            <service name="tns:UserManagementService" port="UserManagementPort"/>
+        </provide>
+        
+        <invoke partnerLink="userService">
+            <service name="tns:UserService" port="UserServicePort"/>
+        </invoke>
+    </process>
+    
+</deploy>
