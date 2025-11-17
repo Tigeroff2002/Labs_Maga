@@ -1,8 +1,9 @@
 ﻿using System.Xml.Serialization;
-using Newtonsoft.Json;
 
 namespace ESB_Mapper.Models;
 
+[Serializable]
+[XmlRoot("command")]
 public class XmlInvoiceRequestCommand
 {
     [XmlElement(ElementName = "amount")]

@@ -34,6 +34,12 @@ public sealed class Controller : ControllerBase
             _repository.UpdateUserBalance(command.UserId, command.Amount);
 
             isSuccess = true;
+
+            _logger.LogWarning(
+                "Succesfully synchornized balance for user {UserId} on invoice {Id}" +
+                "on billing system",
+                command.UserId,
+                command.InvoiceId);
         }
         else
         {

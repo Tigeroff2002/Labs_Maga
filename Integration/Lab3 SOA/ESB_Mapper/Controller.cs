@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using System.Xml.Serialization;
 
 namespace ESB_Mapper;
@@ -38,21 +39,27 @@ public sealed class Controller : ControllerBase
 
         var xmlSerializer = new XmlSerializer(typeof(XmlInvoiceRequestCommand));
 
-        using var stringWriter = new StringWriter();
+        using var stringWriter = new StringWriterWithEncoding(Encoding.UTF8);
 
         xmlSerializer.Serialize(stringWriter, xmlCommand);
 
         _logger.LogInformation(
-            "Posting proxy http request for applying new invoice {Id}",
+            "Posting proxy http request for billing for applying new invoice {Id}",
             xmlCommand.InvoiceId);
+
+        Console.WriteLine($"Sending XML: {stringWriter}");
 
         var response = await httpClient.PostAsync(
             "https://localhost:7084/billing/create",
-            new StringContent(stringWriter.ToString()));
+            new StringContent(stringWriter.ToString(), Encoding.UTF8, "application/xml"));
 
         var xmlDeserializer = new XmlSerializer(typeof(XmlCommandResultResponse));
 
-        using var stringReader = new StringReader(response.Content.ToString()!);
+        var stringContent = await response.Content.ReadAsStringAsync();
+
+        Console.WriteLine($"Received xml response from billing: {stringWriter}");
+
+        using var stringReader = new StringReader(stringContent);
 
         var resultResponse = 
             (XmlCommandResultResponse)xmlDeserializer.Deserialize(stringReader)!;
@@ -91,4 +98,16 @@ public sealed class Controller : ControllerBase
     private readonly ILogger<Controller> _logger;
 
     private static readonly JsonSerializer _serializer = JsonSerializer.CreateDefault();
+
+    private class StringWriterWithEncoding : StringWriter
+    {
+        private readonly Encoding _encoding;
+
+        public StringWriterWithEncoding(Encoding encoding)
+        {
+            _encoding = encoding;
+        }
+
+        public override Encoding Encoding => _encoding;
+    }
 }

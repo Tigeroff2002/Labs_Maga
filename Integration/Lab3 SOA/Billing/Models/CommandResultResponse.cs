@@ -2,6 +2,8 @@
 
 namespace Billing.Models;
 
+[Serializable]
+[XmlRoot("command_result")]
 public sealed class CommandResultResponse
 {
     [XmlElement(ElementName = "is_success")]

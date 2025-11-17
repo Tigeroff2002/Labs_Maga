@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using CRM.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -57,15 +58,21 @@ public sealed class Controller : ControllerBase
         _serializer.Serialize(writer, command);
 
         _logger.LogInformation(
-            "Posting http request for applying new invoice {Id}",
+            "Posting http request to ESB for applying new invoice {Id}",
             createdId);
+
+        Console.WriteLine($"Json content: {stringWriter}");
 
         var response = await httpClient.PostAsync(
             "https://localhost:7021/esb/create",
-            new StringContent(stringWriter.ToString()));
+            new StringContent(stringWriter.ToString(), Encoding.UTF8, "application/json"));
+
+        var stringContent = await response.Content.ReadAsStringAsync();
+
+        Console.WriteLine($"Received json content result from ESB: {stringContent}");
 
         var resultResponse = JsonConvert.DeserializeObject<CommandResultResponse>(
-            response.Content.ToString()!);
+            stringContent);
 
         if (resultResponse!.IsSuccess)
         {
@@ -83,7 +90,7 @@ public sealed class Controller : ControllerBase
                 // может быть получена с какого то хранилища (либо самим Notifications сервисом)
             });
 
-            return Ok(response);
+            return Ok(resultResponse);
         }
 
         _logger.LogWarning(

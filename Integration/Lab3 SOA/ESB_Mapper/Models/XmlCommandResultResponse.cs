@@ -2,6 +2,8 @@
 
 namespace ESB_Mapper.Models;
 
+[Serializable]
+[XmlRoot("command_result")]
 public class XmlCommandResultResponse
 {
     [XmlElement(ElementName = "is_success")]

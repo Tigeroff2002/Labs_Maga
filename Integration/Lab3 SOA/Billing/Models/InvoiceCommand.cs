@@ -2,6 +2,8 @@
 
 namespace Billing.Models;
 
+[Serializable]
+[XmlRoot("command")]
 public class InvoiceCommand
 {
     [XmlElement(ElementName = "amount")]

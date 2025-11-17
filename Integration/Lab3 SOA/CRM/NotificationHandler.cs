@@ -13,7 +13,7 @@ public sealed class NotificationHandler : INotificationHandler
        _producer = new ProducerBuilder<long, string>(
             new ProducerConfig
             {
-                BootstrapServers = "localhost"
+                BootstrapServers = "127.0.0.1:9092"
             })
             .Build();
     }
@@ -31,7 +31,9 @@ public sealed class NotificationHandler : INotificationHandler
         var json = stringWriter.ToString();
 
         _logger.LogInformation(
-            "Producing notification message for Notifications system for user {UserId}",
+            "Producing notification message {Message}" +
+            " for Notifications system for user {UserId}",
+            json,
             message.UserId);
 
         _producer.Produce(

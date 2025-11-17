@@ -14,7 +14,7 @@ public sealed class BrokerNotificationsProcessor :
 
         var config = new ConsumerConfig
         {
-            BootstrapServers = "localhost",
+            BootstrapServers = "127.0.0.1:9092",
             GroupId = "invoices-group",
             AutoOffsetReset = AutoOffsetReset.Earliest,
             EnableAutoOffsetStore = false
